@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.johnguisao.comparadorfbfmovil.MainActivity">
+
+    <EditText
+        android:id="@+id/et_fbf1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <TextView
+        android:id="@+id/tv_fbf1_polaca_inversa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Espacio fbf1 polaca inversa"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="135dp" />
+
+    <EditText
+        android:id="@+id/et_fbf2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="234dp" />
+
+    <TextView
+        android:id="@+id/tv_fbf2_polaca_inversa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Espacio fbf2 polaca inversa"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <Button
+        android:id="@+id/btn_comparar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comparar"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="364dp" />
+</LinearLayout>

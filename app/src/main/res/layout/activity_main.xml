@@ -10,7 +10,7 @@
 
     <EditText
         android:id="@+id/et_fbf1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -21,13 +21,62 @@
         android:id="@+id/tv_fbf1_polaca_inversa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Espacio fbf1 polaca inversa"
+        android:text="Espacio fbf1"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="135dp" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        tools:context="com.example.johnguisao.comparadorfbfmovil.MainActivity">
+        <Button
+            android:id="@+id/btn_parent_izq"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="("/>
+        <Button
+            android:id="@+id/btn_parent_der"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text=")"/>
+        <Button
+            android:id="@+id/btn_condicional"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="→"/>
+
+        <Button
+            android:id="@+id/btn_negacion"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="¬"/>
+
+        <Button
+            android:id="@+id/btn_bicondicional"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="⇔"/>
+        <Button
+            android:id="@+id/btn_disyuncion"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="∨"/>
+        <Button
+            android:id="@+id/btn_conjuncion"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:text="∧ "/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/et_fbf2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
@@ -38,10 +87,9 @@
         android:id="@+id/tv_fbf2_polaca_inversa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Espacio fbf2 polaca inversa"
+        android:text="Espacio fbf2"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="290dp" />
-
     <Button
         android:id="@+id/btn_comparar"
         android:layout_width="wrap_content"

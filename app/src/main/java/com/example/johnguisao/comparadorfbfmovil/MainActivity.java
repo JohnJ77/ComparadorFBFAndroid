@@ -11,21 +11,40 @@ import android.widget.Toast;
 
 import java.util.Stack;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button btnValidar, btnParentIzq, btnParentDer, btnCondicional, btnNegacion, btnBicondicional, btnDisyuncion, btnConjuncion;
+    TextView tvFBF1PolacaInversa, tvFBF2PolacaInversa;
+    EditText etFBF1, etFBF2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnValidar = (Button)findViewById(R.id.btn_comparar);
-        final TextView tvFBF1PolacaInversa = (TextView)findViewById(R.id.tv_fbf1_polaca_inversa);
-        final TextView tvFBF2PolacaInversa = (TextView)findViewById(R.id.tv_fbf2_polaca_inversa);
-        final EditText etFBF1 = (EditText) findViewById(R.id.et_fbf1);
-        final EditText etFBF2 = (EditText) findViewById(R.id.et_fbf2);
+        tvFBF1PolacaInversa = (TextView)findViewById(R.id.tv_fbf1_polaca_inversa);
+        tvFBF2PolacaInversa = (TextView)findViewById(R.id.tv_fbf2_polaca_inversa);
+        etFBF1 = (EditText) findViewById(R.id.et_fbf1);
+        etFBF2 = (EditText) findViewById(R.id.et_fbf2);
+        btnValidar = (Button)findViewById(R.id.btn_comparar);
+        btnParentIzq = (Button)findViewById(R.id.btn_parent_izq);
+        btnParentDer = (Button)findViewById(R.id.btn_parent_der);
+        btnCondicional = (Button)findViewById(R.id.btn_condicional);
+        btnNegacion = (Button)findViewById(R.id.btn_negacion);
+        btnBicondicional = (Button)findViewById(R.id.btn_bicondicional);
+        btnDisyuncion = (Button)findViewById(R.id.btn_disyuncion);
+        btnConjuncion = (Button)findViewById(R.id.btn_conjuncion);
+        btnValidar.setOnClickListener(this);
+        btnParentIzq.setOnClickListener(this);
+        btnParentDer.setOnClickListener(this);
+        btnCondicional.setOnClickListener(this);
+        btnNegacion.setOnClickListener(this);
+        btnBicondicional.setOnClickListener(this);
+        btnDisyuncion.setOnClickListener(this);
+        btnConjuncion.setOnClickListener(this);
+    }
 
-        btnValidar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_comparar:
                 String strFBF1 = etFBF1.getText().toString();
                 String strFBF2 = etFBF2.getText().toString();
                 String strFBF1PolacaInversa = convertirANotacionPolacaInversa(strFBF1);
@@ -40,14 +59,70 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast =Toast.makeText(getApplicationContext(),"Las fbfs no son equivalentes",Toast.LENGTH_SHORT);
                     toast.show();
                 }
-            }
-        });
-
+                break;
+            case R.id.btn_parent_izq:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "(");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "(");
+                }
+                break;
+            case R.id.btn_parent_der:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), ")");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), ")");
+                }
+                break;
+            case R.id.btn_condicional:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "→");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "→");
+                }
+                break;
+            case R.id.btn_negacion:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "¬");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "¬");
+                }
+                break;
+            case R.id.btn_bicondicional:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "⇔");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "⇔");
+                }
+                break;
+            case R.id.btn_disyuncion:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "∨");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "∨");
+                }
+                break;
+            case R.id.btn_conjuncion:
+                if(etFBF1.isFocused()){
+                    etFBF1.getText().insert(etFBF1.getSelectionStart(), "∧");
+                }
+                else if(etFBF2.isFocused()) {
+                    etFBF2.getText().insert(etFBF2.getSelectionStart(), "∧");
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public String convertirANotacionPolacaInversa(String expresion) {
         // TODO code application logic here
-        //String expresion = "(r$¬(s#(¬(t))))?q";
         String expresionResultante = "";
         Stack<String> pilaOperadores = new Stack<String>();
         for (int i = 0; i < expresion.length(); i++) {
@@ -57,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 case '(':
                     pilaOperadores.add(String.valueOf(cExpresion));
                     break;
-                case '~'://Operador Negación.
+                case '¬'://Operador Negación.
                     while(!agregado){
                         if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
                             pilaOperadores.push(String.valueOf(cExpresion));
@@ -68,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case '?'://Operador And
+                case '∧'://Operador And (Conjunción)
                     while(!agregado){
                         if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
                             pilaOperadores.push(String.valueOf(cExpresion));
@@ -79,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case '$'://Operador Or
+                case '∨'://Operador Or(Disyunción)
                     while(!agregado){
                         if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
                             pilaOperadores.push(String.valueOf(cExpresion));
@@ -90,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case '%'://Operador condicional
+                case '→'://Operador condicional
                     while(!agregado){
                         if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
                             pilaOperadores.push(String.valueOf(cExpresion));
@@ -101,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                case '#'://Operador bicondicional
+                case '⇔'://Operador bicondicional
                     while(!agregado){
                         if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
                             pilaOperadores.push(String.valueOf(cExpresion));
@@ -152,19 +227,19 @@ public class MainActivity extends AppCompatActivity {
     public int encontrarPrioridad(char operadorAux) {
         int prioridadOperadorAux = 0;
         switch (operadorAux) {
-            case '~'://Operador Negación.
+            case '¬'://Operador Negación.
                 prioridadOperadorAux = 4;
                 break;
-            case '?'://Operador And
+            case '∧'://Operador And
                 prioridadOperadorAux = 3;
                 break;
-            case '$'://Operador Or
+            case '∨'://Operador Or
                 prioridadOperadorAux = 3;
                 break;
-            case '%'://Operador condicional
+            case '→'://Operador condicional
                 prioridadOperadorAux = 2;
                 break;
-            case '#'://Operador bicondicional
+            case '⇔'://Operador bicondicional
                 prioridadOperadorAux = 1;
                 break;
             default:

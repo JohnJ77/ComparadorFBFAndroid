@@ -220,18 +220,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             boolean agregado = false;
             switch (cExpresion) {
                 case '(':
-                    pilaOperadores.add(String.valueOf(cExpresion));
+                    pilaOperadores.push(String.valueOf(cExpresion));
                     break;
                 case '¬'://Operador Negación.
-                    while(!agregado){
-                        if(peticionAgregarOperadorPila(pilaOperadores,cExpresion)){
-                            pilaOperadores.push(String.valueOf(cExpresion));
-                            agregado = true;
-                        }
-                        else {
-                            expresionResultante += pilaOperadores.pop();
-                        }
-                    }
+                    pilaOperadores.push(String.valueOf(cExpresion));
                     break;
                 case '∧'://Operador And (Conjunción)
                     while(!agregado){

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.johnguisao.comparadorfbfmovil.MainActivity">
+    tools:context="com.example.johnguisao.comparadorfbfmovil.Vista.MainActivity">
 
     <EditText
         android:id="@+id/et_fbf1"
@@ -33,7 +33,7 @@
         android:orientation="horizontal"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        tools:context="com.example.johnguisao.comparadorfbfmovil.MainActivity">
+        tools:context="com.example.johnguisao.comparadorfbfmovil.Vista.MainActivity">
         <Button
             android:id="@+id/btn_parent_izq"
             android:layout_width="30dp"

@@ -1,13 +1,25 @@
-package com.example.johnguisao.comparadorfbfmovil;
+package com.example.johnguisao.comparadorfbfmovil.Vista;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.johnguisao.comparadorfbfmovil.Modelo.FBF;
+import com.example.johnguisao.comparadorfbfmovil.R;
 
 import java.util.Stack;
 
@@ -15,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnValidar, btnParentIzq, btnParentDer, btnCondicional, btnNegacion, btnBicondicional, btnDisyuncion, btnConjuncion;
     TextView tvFBF1PolacaInversa, tvFBF2PolacaInversa;
     EditText etFBF1, etFBF2;
+    private Integer ic_Size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +52,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnBicondicional.setOnClickListener(this);
         btnDisyuncion.setOnClickListener(this);
         btnConjuncion.setOnClickListener(this);
+        DisplayMetrics dm = new DisplayMetrics();
+        MainActivity.this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        ic_Size = (int)(20 * (dm.densityDpi / 160f));
+        etFBF1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    String expresion = etFBF1.getText().toString();
+                    FBF f=new FBF(expresion);
+                    etFBF1.getBackground().setColorFilter(Color.rgb(200,230,201), PorterDuff.Mode.SRC_IN);
+                }catch(Exception e){
+                    etFBF1.getBackground().setColorFilter(Color.rgb(255,102,102), PorterDuff.Mode.SRC_IN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try{
+                    String expresion = etFBF1.getText().toString();
+                    FBF f=new FBF(expresion);
+                    Bitmap resourceImg = BitmapFactory.decodeResource(getResources(), R.drawable.ic_checkmark);
+                    Bitmap resizedImg = Bitmap.createScaledBitmap(resourceImg, ic_Size, ic_Size, true);
+                    Drawable drawableImg = new BitmapDrawable(getResources(), resizedImg);
+                    etFBF1.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableImg, null);
+                    btnValidar.setEnabled(true);
+                }catch(Exception e){
+                    Bitmap resourceImg = BitmapFactory.decodeResource(getResources(), R.drawable.ic_error);
+                    Bitmap resizedImg = Bitmap.createScaledBitmap(resourceImg, ic_Size, ic_Size, true);
+                    Drawable drawableImg = new BitmapDrawable(getResources(), resizedImg);
+                    etFBF1.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableImg, null);
+                    btnValidar.setEnabled(false);
+                }
+            }
+        });
+
+        etFBF2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    String expresion = etFBF2.getText().toString();
+                    FBF f=new FBF(expresion);
+                    etFBF2.getBackground().setColorFilter(Color.rgb(200,230,201), PorterDuff.Mode.SRC_IN);
+                }catch(Exception e){
+                    etFBF2.getBackground().setColorFilter(Color.rgb(255,102,102), PorterDuff.Mode.SRC_IN);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try{
+                    String expresion = etFBF2.getText().toString();
+                    FBF f=new FBF(expresion);
+                    Bitmap resourceImg = BitmapFactory.decodeResource(getResources(), R.drawable.ic_checkmark);
+                    Bitmap resizedImg = Bitmap.createScaledBitmap(resourceImg, ic_Size, ic_Size, true);
+                    Drawable drawableImg = new BitmapDrawable(getResources(), resizedImg);
+                    etFBF2.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableImg, null);
+                    btnValidar.setEnabled(true);
+                }catch(Exception e){
+                    Bitmap resourceImg = BitmapFactory.decodeResource(getResources(), R.drawable.ic_error);
+                    Bitmap resizedImg = Bitmap.createScaledBitmap(resourceImg, ic_Size, ic_Size, true);
+                    Drawable drawableImg = new BitmapDrawable(getResources(), resizedImg);
+                    etFBF2.setCompoundDrawablesWithIntrinsicBounds(null, null, drawableImg, null);
+                    btnValidar.setEnabled(false);
+                }
+            }
+        });
+
     }
 
     @Override
